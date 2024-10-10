@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: django_gcloud_example_local_docs
+    container_name: django_gcloud_example_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./django_gcloud_example:/app/django_gcloud_example:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
